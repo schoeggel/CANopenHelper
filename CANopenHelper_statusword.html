@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>CANopen 402 Statusword</title>
+	<style>
+		span {
+			color: firebrick;
+		}
+	</style>
+</head>
+
+<body style="font-family: consolas">
+	<h2 style="color: firebrick;">CANopen cia 402 Statusword Converter</h2>
+
+	<p>
+		<b>Statusword 16 bit</b>
+	<p>
+
+		<label>dec</label>
+		<input id="Statusword_dec" type="number" placeholder="sw dec" min="0" max="65536" oninput="upd_dec(this.value)"
+			onchange="if(stopRecursion == false) {upd_dec(this.value)}" />
+	</p>
+
+	<p>
+		<label>hex</label>
+		<input id="Statusword_hex" type="text" placeholder="sw hex" min="0" max="65536"
+			pattern="#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?" oninput="upd_hex(this.value)"
+			onchange="if(stopRecursion == false){upd_hex(this.value)}" />
+	</p>
+
+	<!-- // Output fields -->
+	<p><span id="Ready_to_Switch_On"></span> _00_Ready_to_Switch_On</p>
+	<p><span id="Switched_On"></span> _01_Switched_On</p>
+	<p><span id="Operation_Enabled"></span> _02_Operation_Enabled</p>
+	<p><span id="Fault"></span> _03_Fault</p>
+	<p><span id="Voltage_Disabled"></span> _04_Voltage_Disabled</p>
+	<p><span id="Quick_Stop"></span> _05_Quick_Stop</p>
+	<p><span id="Switch_On_Disabled"></span> _06_Switch_On_Disabled</p>
+	<p><span id="Warning"></span> _07_Warning</p>
+	<p><span id="Manufacturer_Specific"></span> _08_Manufacturer_Specific</p>
+	<p><span id="Remote"></span> _09_Remote</p>
+	<p><span id="Target_Reached"></span> _10_Target_Reached</p>
+	<p><span id="Internal_Limit_Active"></span> _11_Internal_Limit_Active</p>
+	<p><span id="bit12"></span> _12_bit12</p>
+	<p><span id="bit13"></span> _13_bit13</p>
+	<p><span id="bit14"></span> _14_bit14</p>
+	<p><span id="bit15"></span> _15_bit15</p>
+	<p><b>State(s)</b></p>
+	<p><span id="state402"></span></p>
+
+
+
+	<svg  viewBox="14.154 5.606 758.94 392.9" width="758.94" height="392.9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<defs>
+		  <symbol id="symbol-0" viewBox="0 0 11.2416 21.58" data-bx-pinned="true">
+			<title>arrow_short_down</title>
+			<g transform="matrix(0.14176000654697418, 0, 0, 0.1254650205373764, -8.498291015625, -1.7586059570312642)" style="">
+			  <path d="M 105.248 157.207 L 94.055 156.625 L 70.375 119.583 L 59.948 126.517 L 99.598 186.017 L 139.248 126.517 L 129.007 120.536 L 105.248 157.207 Z" stroke="#cccccc" stroke-width="2" fill="#0"></path>
+			</g>
+		  </symbol>
+		</defs>
+		<rect width="210.202" height="255.045" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" x="14.154" y="5.606">
+		  <title>groupDisabled</title>
+		</rect>
+		<rect y="267.901" width="384.529" height="130.605" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" x="14.154">
+		  <title>groupEnabled</title>
+		</rect>
+		<rect x="231.293" width="167.101" height="255.045" style="fill: rgb(216, 216, 216); stroke: rgb(0, 0, 0);" y="5.606">
+		  <title>groupFault</title>
+		</rect>
+		<g transform="matrix(1, 0, 0, 1, -26.905222, -389.013458)">
+		  <rect x="84.641" y="413.553" width="122.758" height="39.238" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);">
+			<title>state_x</title>
+		  </rect>
+		  <text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 15.7px;" x="129.386" y="438.497">Start</text>
+		</g>
+		<rect x="58.016" y="85.264" width="122.758" height="39.238" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);">
+		  <title>state_x</title>
+		</rect>
+		<text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 15.7px;" x="129.386" y="438.497" transform="matrix(1, 0, 0, 1, -52.740795, -336.138885)">Not ready to<tspan x="129.38600158691406" dy="1em"> </tspan>switch on</text>
+		<rect x="57.736" y="206.714" width="122.758" height="39.238" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);">
+		  <title>state_x</title>
+		</rect>
+		<text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 15.7px;" x="102.481" y="231.658" transform="matrix(1, 0, 0, 1, -16.078655, -7.849896)">Ready to<tspan x="102.48100280761719" dy="1em"> </tspan>switch on</text>
+		<rect x="57.736" y="286.871" width="122.758" height="39.238" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);">
+		  <title>state_x</title>
+		</rect>
+		<text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 15.7px;" x="76.361" y="311.815">Switched on</text>
+		<rect x="57.736" y="346.848" width="122.758" height="39.238" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);">
+		  <title>state_x</title>
+		</rect>
+		<text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 15.7px;" x="102.481" y="371.792" transform="matrix(1, 0, 0, 1, -17.830334, -7.849888)">Operation<tspan x="102.48100280761719" dy="1em"> </tspan>enable</text>
+		<rect x="57.736" y="145.989" width="122.758" height="39.238" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);">
+		  <title>state_x</title>
+		</rect>
+		<text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 15.7px;" x="102.481" y="170.933" transform="matrix(1, 0, 0, 1, -17.392422, -7.849896)">Switch on<tspan x="102.48100280761719" dy="1em"> </tspan>disabled</text>
+		<rect x="253.465" y="84.54" width="122.758" height="39.238" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);">
+		  <title>state_x</title>
+		</rect>
+		<text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 15.7px;" x="298.21" y="49.484" transform="matrix(1, 0, 0, 1, -33.687435, 52.150116)">Fault Reaction<tspan x="298.2099914550781" dy="1em"> </tspan>Active</text>
+		<rect x="253.465" y="145.264" width="122.758" height="39.238" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);">
+		  <title>state_x</title>
+		</rect>
+		<text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 15.7px;" x="297.336" y="170.208">Fault</text>
+		<rect x="253.465" y="346.848" width="122.758" height="39.238" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255);">
+		  <title>state_x</title>
+		</rect>
+		<text style="white-space: pre; fill: rgb(51, 51, 51); font-family: Arial, sans-serif; font-size: 15.7px;" x="298.21" y="371.792" transform="matrix(1, 0, 0, 1, -21.74972, -7.849888)">Quick Stop<tspan x="298.2099914550781" dy="1em"> </tspan>active</text>
+		<use width="11.241600036621094" height="21.579999923706055" transform="matrix(1, 0, 0, 1, 113.49398, 63.94841)" xlink:href="#symbol-0"></use>
+		<use width="11.241600036621094" height="21.579999923706055" transform="matrix(1, 0, 0, 1, 113.49398, 124.804909)" xlink:href="#symbol-0"></use>
+		<use width="11.241600036621094" height="21.579999923706055" transform="matrix(1, 0, 0, 1, 74.17292, 185.286713)" xlink:href="#symbol-0"></use>
+		<use width="11.241600036621094" height="21.579999923706055" transform="matrix(1, 0, 0, 1, 74.17292, 325.286713)" xlink:href="#symbol-0"></use>
+		<use width="11.241600036621094" height="21.579999923706055" transform="matrix(1, 0, 0, 1, 309.223206, 124.266792)" xlink:href="#symbol-0"></use>
+		<use width="11.241600036621094" height="21.579999923706055" transform="matrix(1, 0, 0, 1, 309.223206, 62.343029)" xlink:href="#symbol-0"></use>
+		<use width="11.241600036621094" height="21.579999923706055" transform="matrix(-0.000001, 1, -1, -0.000001, 202.857254, 148.153473)" xlink:href="#symbol-0"></use>
+		<use width="11.241600036621094" height="21.579999923706055" transform="matrix(-0.000001, 1, -1, -0.000001, 202.857254, 160.205048)" xlink:href="#symbol-0"></use>
+		<use width="11.241600036621094" height="21.579999923706055" transform="matrix(-0.000001, 1, -1, -0.000001, 202.648361, 173.256638)" xlink:href="#symbol-0"></use>
+		<use width="11.241600036621094" height="21.579999923706055" transform="matrix(-0.000001, 1, -1, -0.000001, 202.686859, 369.691589)" xlink:href="#symbol-0"></use>
+		<use width="11.241600036621094" height="21.579999923706055" transform="matrix(0.000001, -1, 1, 0.000001, 230.999222, 363.430939)" xlink:href="#symbol-0"></use>
+		<use width="11.241600036621094" height="21.579999923706055" transform="matrix(0.000001, -1, 1, 0.000001, 35.931969, 171.22879)" xlink:href="#symbol-0"></use>
+		<use width="11.241600036621094" height="21.579999923706055" transform="matrix(0.000001, -1, 1, 0.000001, 35.931969, 231.953796)" xlink:href="#symbol-0"></use>
+		<use width="11.241600036621094" height="21.579999923706055" transform="matrix(1, 0, 0, 1, 75.040215, 265.739624)" xlink:href="#symbol-0"></use>
+		<use width="11.241600036621094" height="21.579999923706055" transform="matrix(-1, 0, 0, -1, 161.853973, 267.319611)" xlink:href="#symbol-0"></use>
+		<use width="11.241600036621094" height="21.579999923706055" transform="matrix(-1, 0, 0, -1, 161.853973, 206.866714)" xlink:href="#symbol-0"></use>
+		<use width="11.241600036621094" height="21.579999923706055" transform="matrix(-1, 0, 0, -1, 161.853973, 346.866699)" xlink:href="#symbol-0"></use>
+		<path d="M 410.31 99.947 C 506.724 99.654 608.643 67.808 700.324 99.054 C 708.454 101.932 712.767 107.812 714.286 115.288 C 715.795 122.714 714.788 131.956 712.808 141.743 C 710.829 151.523 707.867 161.989 705.407 172.066 C 704.177 177.104 703.076 182.029 702.28 186.742 C 701.882 189.097 701.563 191.378 701.342 193.601 C 701.231 194.712 701.146 195.794 701.088 196.865 C 701.03 197.936 700.999 200.054 700.999 200.054 C 700.999 200.042 699.001 199.958 699.001 199.946 C 699.001 199.946 699.032 197.853 699.091 196.757 C 699.15 195.661 699.239 194.535 699.351 193.403 C 699.577 191.141 699.905 188.792 700.308 186.409 C 701.113 181.644 702.229 176.649 703.464 171.592 C 705.932 161.48 708.884 151.052 710.847 141.346 C 712.81 131.648 713.774 122.814 712.326 115.687 C 710.888 108.61 707.316 103.46 699.676 100.946 C 608.619 69.708 507.026 101.608 410.316 101.947 Z" style="fill: none;"></path>
+		<path d="M 410.31 99.947 C 506.724 99.654 608.643 67.808 700.324 99.054 C 708.454 101.932 712.767 107.812 714.286 115.288 C 715.795 122.714 714.788 131.956 712.808 141.743 C 710.829 151.523 707.867 161.989 705.407 172.066 C 704.177 177.104 703.076 182.029 702.28 186.742 C 701.882 189.097 701.563 191.378 701.342 193.601 C 701.231 194.712 701.146 195.794 701.088 196.865 C 701.03 197.936 700.999 200.054 700.999 200.054 C 700.999 200.042 699.001 199.958 699.001 199.946 C 699.001 199.946 699.032 197.853 699.091 196.757 C 699.15 195.661 699.239 194.535 699.351 193.403 C 699.577 191.141 699.905 188.792 700.308 186.409 C 701.113 181.644 702.229 176.649 703.464 171.592 C 705.932 161.48 708.884 151.052 710.847 141.346 C 712.81 131.648 713.774 122.814 712.326 115.687 C 710.888 108.61 707.316 103.46 699.676 100.946 C 608.619 69.708 507.026 101.608 410.316 101.947 Z" style="fill: none;"></path>
+		<polyline points="183.917 375.436 253.465 375.681" style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;"></polyline>
+		<polyline points="180.494 357.241 250.042 357.486" style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;"></polyline>
+		<path d="M 183.917 165.871 L 217.057 165.933 L 217.175 307.709 L 300 307.706 L 300 346.848" style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;"></path>
+		<polyline points="183.917 153.623 253.465 153.873" style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;"></polyline>
+		<polyline points="314.844 81.886 314.844 37.556" style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;"></polyline>
+		<polyline points="314.844 144.33 314.844 123.778" style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;"></polyline>
+		<polyline points="119.145 82.817 119.145 63.778" style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;"></polyline>
+		<polyline points="119.145 143.541 119.145 124.502" style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;"></polyline>
+		<polyline points="79.87 204.266 79.87 185.227" style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;"></polyline>
+		<polyline points="156.235 206.867 156.235 187.828" style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;"></polyline>
+		<polyline points="156.235 287.32 156.235 248.862" style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;"></polyline>
+		<polyline points="80.661 284.41 80.661 245.952" style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;"></polyline>
+		<polyline points="79.87 344.326 79.87 326.109" style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;"></polyline>
+		<polyline points="156.235 346.848 156.235 328.631" style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;"></polyline>
+		<path d="M 183.572 178.509 L 202.712 178.571 L 202.687 307.567 L 180.494 307.564" style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;"></path>
+		<path d="M 38.617 355.189 L 57.757 355.127 L 57.732 226.131 L 35.539 226.134" style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;" transform="matrix(-1, 0, 0, -1, 93.295998, 581.320007)"></path>
+		<path d="M 16.296 444.455 L 46.829 444.455 L 46.804 240.634 L 13.683 240.634" style="fill: none; stroke: rgb(0, 0, 0); stroke-width: 2px;" transform="matrix(-1, 0, 0, -1, 71.44001, 610.325989)"></path>
+	  </svg>
+
+
+	<script>
+
+		const STATUSWORD = {
+			_00_Ready_to_Switch_On: 1,
+			_01_Switched_On: 2,
+			_02_Operation_Enabled: 4,
+			_03_Fault: 8,
+			_04_Voltage_Disabled: 0x10,
+			_05_Quick_Stop: 0x20,
+			_06_Switch_On_Disabled: 0x40,
+			_07_Warning: 0x80,
+			_08_Manufacturer_Specific: 256,
+			_09_Remote: 512,
+			_10_Target_Reached: 1024,
+			_11_Internal_Limit_Active: 2048,
+			_12_bit12: 4096,
+			_13_bit13: 8192,
+			_14_bit14: 16384,
+			_15_bit15: 32768
+		}
+
+		var stopRecursion = false
+
+		function updateBoxes(value) {
+			document.getElementById("Ready_to_Switch_On").innerHTML = (value & STATUSWORD._00_Ready_to_Switch_On ? '[X]' : '[_]');
+			document.getElementById("Switched_On").innerHTML = (value & STATUSWORD._01_Switched_On ? '[X]' : '[_]');
+			document.getElementById("Operation_Enabled").innerHTML = (value & STATUSWORD._02_Operation_Enabled ? '[X]' : '[_]');
+			document.getElementById("Fault").innerHTML = (value & STATUSWORD._03_Fault ? '[X]' : '[_]');
+			document.getElementById("Voltage_Disabled").innerHTML = (value & STATUSWORD._04_Voltage_Disabled ? '[X]' : '[_]');
+			document.getElementById("Quick_Stop").innerHTML = (value & STATUSWORD._05_Quick_Stop ? '[X]' : '[_]');
+			document.getElementById("Switch_On_Disabled").innerHTML = (value & STATUSWORD._06_Switch_On_Disabled ? '[X]' : '[_]');
+			document.getElementById("Warning").innerHTML = (value & STATUSWORD._07_Warning ? '[X]' : '[_]');
+			document.getElementById("Manufacturer_Specific").innerHTML = (value & STATUSWORD._08_Manufacturer_Specific ? '[X]' : '[_]');
+			document.getElementById("Remote").innerHTML = (value & STATUSWORD._09_Remote ? '[X]' : '[_]');
+			document.getElementById("Target_Reached").innerHTML = (value & STATUSWORD._10_Target_Reached ? '[X]' : '[_]');
+			document.getElementById("Internal_Limit_Active").innerHTML = (value & STATUSWORD._11_Internal_Limit_Active ? '[X]' : '[_]');
+			document.getElementById("bit12").innerHTML = (value & STATUSWORD._12_bit12 ? '[X]' : '[_]');
+			document.getElementById("bit13").innerHTML = (value & STATUSWORD._13_bit13 ? '[X]' : '[_]');
+			document.getElementById("bit14").innerHTML = (value & STATUSWORD._14_bit14 ? '[X]' : '[_]');
+			document.getElementById("bit15").innerHTML = (value & STATUSWORD._15_bit15 ? '[X]' : '[_]');
+			document.getElementById("state402").innerHTML = getStateString(value);
+
+		}
+
+		function upd_hex(hexval) {
+			if (stopRecursion == false) {
+				stopRecursion = true;
+				newval = parseInt(hexval, 16);
+				document.getElementById("Statusword_dec").value = newval
+				updateBoxes(newval)
+				stopRecursion = false;
+			}
+		}
+
+		function upd_dec(decval) {
+			if (stopRecursion == false) {
+				stopRecursion = true;
+				newhex = parseInt(decval, 10).toString(16)
+				document.getElementById("Statusword_hex").value = newhex
+				updateBoxes(decval)
+				stopRecursion = false;
+			}
+		}
+
+
+		function is_Not_Ready_To_Switch_On(sw) {
+			const mask = 0x4f
+			const bitvalue = 0x0
+			return ((sw & mask) == bitvalue) ? "[Not_Ready_To_Switch_On] " : ""
+		};
+
+		function is_Switch_On_Disabled(sw) {
+			const mask = 0x4f
+			const bitvalue = 0x40
+			return ((sw & mask) == bitvalue) ? "[Switch_On_Disabled]" : ""
+		};
+
+		function is_Ready_To_Switch_On(sw) {
+			const mask = 0x6f
+			const bitvalue = 0x21
+			return ((sw & mask) == bitvalue) ? "[Ready_To_Switch_On]" : ""
+		};
+
+		function is_Switched_On(sw) {
+			const mask = 0x6f
+			const bitvalue = 0x23
+			return ((sw & mask) == bitvalue) ? "[Switched_On]" : ""
+		};
+
+		function is_Operation_Enable(sw) {
+			const mask = 0x6f
+			const bitvalue = 0x27
+			return ((sw & mask) == bitvalue) ? "[Operation_Enable]" : ""
+		};
+
+		function is_Quick_Stop_Active(sw) {
+			const mask = 0x6f
+			const bitvalue = 0x07
+			return ((sw & mask) == bitvalue) ? "[Quick_Stop_Active]" : ""
+		};
+
+		function is_Fault_Reaction_Active(sw) {
+			const mask = 0x4f
+			const bitvalue = 0x0f
+			return ((sw & mask) == bitvalue) ? "[Fault_Reaction_Active]" : ""
+		}
+
+		// FESTO pdf Documentation is not 100% clear nor 100% following cia 402.
+		// The primary check is for bit 03 (Fault).
+		// What is not clear: If bits 0,1,2 should be checked or not.
+		function is_Fault(sw) {
+			const mask = 0x08
+			const bitvalue = 0x08
+			return ((sw & mask) == bitvalue) ? "[Fault]" : ""
+		};
+
+
+
+		function getStateString(sw) {
+			return is_Not_Ready_To_Switch_On(sw) +
+				is_Switch_On_Disabled(sw) +
+				is_Ready_To_Switch_On(sw) +
+				is_Switched_On(sw) +
+				is_Operation_Enable(sw) +
+				is_Quick_Stop_Active(sw) +
+				is_Fault_Reaction_Active(sw) +
+				is_Fault(sw)
+		}
+
+		updateBoxes(0)
+
+	</script>
+</body>
+
+</html>
